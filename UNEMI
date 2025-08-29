@@ -1,0 +1,243 @@
+<div class="app-container">
+
+  <!-- Portada -->
+  <section id="portada" class="active">
+    <h1 class="title">📚 Educación Híbrida</h1>
+    <p class="subtitle">Un recorrido interactivo</p>
+    <button id="irMenu" class="btn btn-primary mt-4">Entrar</button>
+  </section>
+
+  <!-- Menú de opciones -->
+  <nav id="menu" class="navbar hidden">
+    <button data-tab="inicio" class="tab-btn">🏠 Inicio</button>
+    <button data-tab="sobre" class="tab-btn">📖 Educación Híbrida</button>
+    <button data-tab="tareas" class="tab-btn">📝 Tareas</button>
+    <button data-tab="recursos" class="tab-btn">📦 Recursos</button>
+    <button data-tab="ia" class="tab-btn">🤖 IA Asistente</button>
+  </nav>
+
+  <!-- Secciones -->
+  <section id="inicio" class="tab-content hidden">
+    <h2>Inicio</h2>
+    <p>Bienvenido a la propuesta de curso híbrido.</p>
+    <div class="video-box">
+      <input type="file" accept="video/*" multiple class="video-upload">
+      <input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+      <button class="btn add-video">Agregar Video</button>
+      <div class="videos"></div>
+    </div>
+  </section>
+
+  <section id="sobre" class="tab-content hidden">
+    <h2>Sobre la Educación Híbrida</h2>
+    <p>Explicación breve sobre este modelo, beneficios y retos.</p>
+    <div class="video-box">
+      <input type="file" accept="video/*" multiple class="video-upload">
+      <input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+      <button class="btn add-video">Agregar Video</button>
+      <div class="videos"></div>
+    </div>
+  </section>
+
+  <section id="tareas" class="tab-content hidden">
+    <h2>Tareas del Curso</h2>
+    <h3>🔹 Tarea 1: Aula invertida</h3>
+    <p>Reflexión y materiales de apoyo.</p>
+    <div class="video-box">
+      <input type="file" accept="video/*" multiple class="video-upload">
+      <input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+      <button class="btn add-video">Agregar Video</button>
+      <div class="videos"></div>
+    </div>
+    <h3>🔹 Tarea 2: AR/VR</h3>
+    <p>Explicación del entorno y capturas.</p>
+    <div class="video-box">
+      <input type="file" accept="video/*" multiple class="video-upload">
+      <input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+      <button class="btn add-video">Agregar Video</button>
+      <div class="videos"></div>
+    </div>
+    <h3>🔹 Tarea 3: Chatbot en POE</h3>
+    <p>Enlace o QR y explicación del chatbot.</p>
+    <div class="video-box">
+      <input type="file" accept="video/*" multiple class="video-upload">
+      <input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+      <button class="btn add-video">Agregar Video</button>
+      <div class="videos"></div>
+    </div>
+  </section>
+
+  <section id="recursos" class="tab-content hidden">
+    <h2>Recursos Complementarios</h2>
+    <ul>
+      <li>Herramientas para VR/AR</li>
+      <li>Tutoriales y guías</li>
+      <li>Chatbots educativos</li>
+    </ul>
+    <div class="video-box">
+      <input type="file" accept="video/*" multiple class="video-upload">
+      <input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+      <button class="btn add-video">Agregar Video</button>
+      <div class="videos"></div>
+    </div>
+  </section>
+
+  <!-- IA Asistente -->
+  <section id="ia" class="tab-content hidden">
+    <h2>🤖 Asistente de IA - Edita tu página</h2>
+    <p>Escribe instrucciones y la página se actualizará automáticamente.</p>
+    <input id="ia-input" type="text" placeholder="Ej: cambiar color de fondo a lightblue" style="width:80%; padding:0.3rem;">
+    <button id="ia-btn" class="btn mt-2">Ejecutar</button>
+    <p class="mt-2 text-gray-600">
+      Ejemplos:<br>
+      - cambiar color de fondo a lightyellow<br>
+      - agregar título Nuevo Título<br>
+      - agregar párrafo Este es un párrafo de prueba<br>
+      - agregar video https://youtu.be/dQw4w9WgXcQ
+    </p>
+  </section>
+</div>
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+.app-container { text-align: center; padding: 2rem; }
+.title { font-size: 2rem; font-weight: bold; }
+.subtitle { font-size: 1.2rem; color: gray; }
+
+/* Navbar fija */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #0ea5e9;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+.navbar .tab-btn {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: white;
+  color: #0ea5e9;
+  font-weight: 600;
+}
+.navbar .tab-btn:hover { background: #f0f9ff; }
+
+/* Contenido debajo del navbar */
+.tab-content { padding: 5rem 1rem 1rem; border: 1px solid #ddd; border-radius: 0.5rem; margin-top: 1rem; }
+.hidden { display: none; }
+.active { display: block; }
+
+.video-box { margin-top: 1rem; }
+.video-box input { display: block; margin: 0.5rem auto; padding: 0.3rem; width: 80%; max-width: 400px; }
+.video-box video, .video-box iframe { width: 100%; margin-top: 0.5rem; border-radius: 0.5rem; }
+.btn { padding: 0.4rem 0.8rem; border-radius: 0.5rem; background: #0ea5e9; color: white; }
+// Botón portada → menú
+document.getElementById("irMenu").addEventListener("click", () => {
+  document.getElementById("portada").classList.add("hidden");
+  document.querySelector(".navbar").classList.remove("hidden");
+});
+
+// Cambiar pestañas
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-content").forEach(tab => tab.classList.add("hidden"));
+    document.getElementById(btn.dataset.tab).classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
+// Subida de videos
+document.querySelectorAll(".tab-content").forEach(section => {
+  const addBtn = section.querySelector(".add-video");
+  if (!addBtn) return;
+  const fileInput = section.querySelector(".video-upload");
+  const urlInput = section.querySelector(".video-url");
+  const videoContainer = section.querySelector(".videos");
+
+  addBtn.addEventListener("click", () => {
+    // Archivos locales
+    if (fileInput.files.length > 0) {
+      Array.from(fileInput.files).forEach(file => {
+        const videoEl = document.createElement("video");
+        videoEl.controls = true;
+        videoEl.src = URL.createObjectURL(file);
+        videoEl.className = "mt-2";
+        videoContainer.appendChild(videoEl);
+      });
+      fileInput.value = "";
+    }
+
+    // Enlaces
+    if (urlInput.value.trim() !== "") {
+      const url = urlInput.value.trim();
+      let embedEl;
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        const videoId = url.split("v=")[1]?.split("&")[0] || url.split("/").pop();
+        embedEl = document.createElement("iframe");
+        embedEl.src = `https://www.youtube.com/embed/${videoId}`;
+      } else if(url.includes("vimeo.com")) {
+        const videoId = url.split("/").pop();
+        embedEl = document.createElement("iframe");
+        embedEl.src = `https://player.vimeo.com/video/${videoId}`;
+      } else {
+        embedEl = document.createElement("a");
+        embedEl.href = url;
+        embedEl.textContent = "Ver video";
+        embedEl.target = "_blank";
+      }
+      embedEl.className = "mt-2 w-full rounded";
+      embedEl.height = 315;
+      videoContainer.appendChild(embedEl);
+      urlInput.value = "";
+    }
+  });
+});
+
+// IA Asistente
+document.getElementById('ia-btn').addEventListener('click', () => {
+  const cmd = document.getElementById('ia-input').value.toLowerCase();
+
+  if(cmd.includes("cambiar color de fondo")){
+    const color = cmd.split("a ")[1] || "lightyellow";
+    document.body.style.backgroundColor = color;
+  }
+  else if(cmd.includes("agregar título")){
+    const h2 = document.createElement('h2');
+    h2.textContent = cmd.split("agregar título ")[1] || "Nuevo Título";
+    h2.className = "mt-2";
+    document.querySelector('#ia').appendChild(h2);
+  }
+  else if(cmd.includes("agregar párrafo")){
+    const p = document.createElement('p');
+    p.textContent = cmd.split("agregar párrafo ")[1] || "Nuevo párrafo";
+    p.className = "mt-1";
+    document.querySelector('#ia').appendChild(p);
+  }
+  else if(cmd.includes("agregar video")){
+    const url = cmd.split("agregar video ")[1];
+    let embedEl;
+    if(url.includes("youtube.com") || url.includes("youtu.be")){
+      const videoId = url.split("v=")[1]?.split("&")[0] || url.split("/").pop();
+      embedEl = document.createElement("iframe");
+      embedEl.src = `https://www.youtube.com/embed/${videoId}`;
+    } else if(url.includes("vimeo.com")){
+      const videoId = url.split("/").pop();
+      embedEl = document.createElement("iframe");
+      embedEl.src = `https://player.vimeo.com/video/${videoId}`;
+    } else {
+      embedEl = document.createElement("a");
+      embedEl.href = url;
+      embedEl.textContent = "Ver video";
+      embedEl.target = "_blank";
+    }
+    embedEl.className = "mt-2 w-full rounded";
+    embedEl.height = 315;
+    document.querySelector('#ia').appendChild(embedEl);
+  }
+  else {
+    alert("Instrucción no reconocida. Usa un ejemplo de ayuda.");
+  }
+
+  document.getElementById('ia-input').value = "";
+});
