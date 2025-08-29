@@ -1,1 +1,203 @@
 # Educacion-hibrida
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educación Híbrida - Avanzado</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family: Arial, sans-serif; display:flex; min-height:100vh; }
+aside { width:220px; background:#0ea5e9; color:white; padding:1rem; position:fixed; height:100vh; overflow:auto; }
+aside h2 { text-align:center; margin-bottom:1rem; }
+aside button { display:block; width:100%; padding:0.5rem; margin:0.3rem 0; border:none; background:white; color:#0ea5e9; font-weight:bold; border-radius:5px; cursor:pointer; text-align:left; }
+aside button:hover { background:#f0f9ff; }
+main { margin-left:220px; padding:2rem; flex:1; }
+section { display:none; padding:1rem 0; }
+section.active { display:block; }
+.video-box { margin-top:1rem; }
+.video-box input { display:block; margin:0.5rem 0; padding:0.3rem; width:80%; max-width:400px; }
+.video-box video, .video-box iframe { width:100%; margin-top:0.5rem; border-radius:5px; }
+.btn { padding:0.4rem 0.8rem; border-radius:5px; background:#0ea5e9; color:white; cursor:pointer; margin-top:0.5rem; }
+header { text-align:center; padding:2rem; background:#f0f9ff; border-radius:10px; margin-bottom:2rem; }
+header h1 { font-size:2rem; margin-bottom:0.5rem; }
+header p { font-size:1.1rem; }
+@media(max-width:768px){ aside{width:100%; height:auto; position:relative;} main{margin-left:0;} }
+</style>
+</head>
+<body>
+
+<aside>
+<h2>Educación Híbrida</h2>
+<button data-tab="portada">🏠 Portada</button>
+<button data-tab="inicio">Inicio</button>
+<button data-tab="sobre">📖 Sobre</button>
+<button data-tab="tareas">📝 Tareas</button>
+<button data-tab="recursos">📦 Recursos</button>
+<button data-tab="ia">🤖 Asistente IA</button>
+</aside>
+
+<main>
+<section id="portada" class="active">
+<header>
+<h1>Bienvenido al Sitio de Educación Híbrida</h1>
+<p>Explora tareas, recursos y usa nuestro asistente IA.</p>
+<button class="btn" onclick="document.querySelector('#inicio').classList.add('active'); document.querySelector('#portada').classList.remove('active');">Entrar</button>
+</header>
+</section>
+
+<section id="inicio">
+<h2>Inicio</h2>
+<p>Esta es la página principal. Puedes subir videos y enlaces en cada sección.</p>
+<div class="video-box">
+<input type="file" accept="video/*" multiple class="video-upload">
+<input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+<button class="btn add-video">Agregar Video</button>
+<div class="videos"></div>
+</div>
+</section>
+
+<section id="sobre">
+<h2>Sobre Educación Híbrida</h2>
+<p>Explicación breve, beneficios y desafíos.</p>
+<div class="video-box">
+<input type="file" accept="video/*" multiple class="video-upload">
+<input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+<button class="btn add-video">Agregar Video</button>
+<div class="videos"></div>
+</div>
+</section>
+
+<section id="tareas">
+<h2>Tareas del Curso</h2>
+
+<h3>🔹 Tarea 1: Aula invertida</h3>
+<p>Reflexión y materiales de apoyo.</p>
+<div class="video-box">
+<input type="file" accept="video/*" multiple class="video-upload">
+<input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+<button class="btn add-video">Agregar Video</button>
+<div class="videos"></div>
+</div>
+
+<h3>🔹 Tarea 2: AR/VR</h3>
+<p>Explicación del entorno y capturas.</p>
+<div class="video-box">
+<input type="file" accept="video/*" multiple class="video-upload">
+<input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+<button class="btn add-video">Agregar Video</button>
+<div class="videos"></div>
+</div>
+
+<h3>🔹 Tarea 3: Chatbot en POE</h3>
+<p>Enlace o QR y explicación del chatbot.</p>
+<div class="video-box">
+<input type="file" accept="video/*" multiple class="video-upload">
+<input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+<button class="btn add-video">Agregar Video</button>
+<div class="videos"></div>
+</div>
+</section>
+
+<section id="recursos">
+<h2>Recursos Complementarios</h2>
+<ul>
+<li>Herramientas para VR/AR</li>
+<li>Tutoriales y guías</li>
+<li>Chatbots educativos</li>
+</ul>
+<div class="video-box">
+<input type="file" accept="video/*" multiple class="video-upload">
+<input type="url" placeholder="Pega enlace YouTube/Vimeo" class="video-url">
+<button class="btn add-video">Agregar Video</button>
+<div class="videos"></div>
+</div>
+</section>
+
+<section id="ia">
+<h2>🤖 Asistente de IA</h2>
+<p>Escribe instrucciones para modificar la página:</p>
+<input id="ia-input" type="text" placeholder="Ej: cambiar color de fondo a lightblue" style="width:80%; padding:0.3rem;">
+<button id="ia-btn" class="btn mt-2">Ejecutar</button>
+<p>
+Ejemplos:<br>
+- cambiar color de fondo a lightyellow<br>
+- agregar título Nuevo Título<br>
+- agregar párrafo Este es un párrafo de prueba<br>
+- agregar video https://youtu.be/dQw4w9WgXcQ
+</p>
+</section>
+</main>
+
+<script>
+// Pestañas
+document.querySelectorAll('aside button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+});
+
+// Subir videos
+document.querySelectorAll(".video-box").forEach(box => {
+  const addBtn = box.querySelector(".add-video");
+  const fileInput = box.querySelector(".video-upload");
+  const urlInput = box.querySelector(".video-url");
+  const videoContainer = box.querySelector(".videos");
+
+  addBtn.addEventListener("click", () => {
+    if(fileInput.files.length>0){
+      Array.from(fileInput.files).forEach(file=>{
+        const v = document.createElement("video");
+        v.controls=true; v.src=URL.createObjectURL(file); v.className="mt-2";
+        videoContainer.appendChild(v);
+      });
+      fileInput.value="";
+    }
+    if(urlInput.value.trim()!==""){
+      const url = urlInput.value.trim();
+      let embedEl;
+      if(url.includes("youtube.com") || url.includes("youtu.be")){
+        const id = url.split("v=")[1]?.split("&")[0] || url.split("/").pop();
+        embedEl=document.createElement("iframe"); embedEl.src=`https://www.youtube.com/embed/${id}`;
+      } else if(url.includes("vimeo.com")){
+        const id = url.split("/").pop();
+        embedEl=document.createElement("iframe"); embedEl.src=`https://player.vimeo.com/video/${id}`;
+      } else {
+        embedEl=document.createElement("a"); embedEl.href=url; embedEl.textContent="Ver video"; embedEl.target="_blank";
+      }
+      embedEl.className="mt-2 w-full rounded"; embedEl.height=315;
+      videoContainer.appendChild(embedEl);
+      urlInput.value="";
+    }
+  });
+});
+
+// Asistente IA
+document.getElementById('ia-btn').addEventListener('click',()=>{
+  const cmd=document.getElementById('ia-input').value.toLowerCase();
+  if(cmd.includes("cambiar color de fondo")){
+    const color=cmd.split("a ")[1]||"lightyellow"; document.body.style.backgroundColor=color;
+  } else if(cmd.includes("agregar título")){
+    const h2=document.createElement('h2'); h2.textContent=cmd.split("agregar título ")[1]||"Nuevo Título"; document.querySelector('#ia').appendChild(h2);
+  } else if(cmd.includes("agregar párrafo")){
+    const p=document.createElement('p'); p.textContent=cmd.split("agregar párrafo ")[1]||"Nuevo párrafo"; document.querySelector('#ia').appendChild(p);
+  } else if(cmd.includes("agregar video")){
+    const url=cmd.split("agregar video ")[1]; let embedEl;
+    if(url.includes("youtube.com") || url.includes("youtu.be")){
+      const id=url.split("v=")[1]?.split("&")[0]||url.split("/").pop();
+      embedEl=document.createElement("iframe"); embedEl.src=`https://www.youtube.com/embed/${id}`;
+    } else if(url.includes("vimeo.com")){
+      const id=url.split("/").pop();
+      embedEl=document.createElement("iframe"); embedEl.src=`https://player.vimeo.com/video/${id}`;
+    } else { embedEl=document.createElement("a"); embedEl.href=url; embedEl.textContent="Ver video"; embedEl.target="_blank"; }
+    embedEl.className="mt-2 w-full rounded"; embedEl.height=315;
+    document.querySelector('#ia').appendChild(embedEl);
+  } else { alert("Instrucción no reconocida. Usa un ejemplo de ayuda."); }
+  document.getElementById('ia-input').value="";
+});
+</script>
+
+</body>
+</html>
